@@ -111,7 +111,6 @@ for k in dict.keys():
     sum += dict[k]
     res += sum//k
     sum %= k
-    
 print(res)  
 ```
 ## 답지
