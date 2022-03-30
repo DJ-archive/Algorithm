@@ -141,3 +141,47 @@ def bfs(x,y):
 
 print(bfs(0,0))
 ```
+# BOJ
+```python
+from collections import deque
+n = int(input())
+graph = []
+for i in range(n):
+  graph.append(list(map(int,input())))
+
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
+count = 0 # 단지 수
+hslist  = [] # 단지별 집 수를 담을 리스트
+
+def bfs(x,y):
+  houseN = 1 # 단지별 집 수
+  queue = deque()
+  queue.append((x,y))
+  graph[x][y]=0 # 방문처리
+  while queue:
+    x,y = queue.popleft()
+    for i in range(4):
+      nx = x + dx[i]
+      ny = y + dy[i]
+      if nx<0 or nx>=n or ny<0 or ny>=n:
+        continue
+      if graph[nx][ny]==0:
+        continue
+      if graph[nx][ny]==1:
+        queue.append((nx,ny))
+        graph[nx][ny]=0 # 방문처리
+        houseN += 1
+  hslist.append(houseN)
+
+for i in range(n):
+  for j in range(n):
+    if graph[i][j]==1:
+      bfs(i,j)
+      count += 1
+      
+print(count)
+hslist.sort() # 문제 조건 잘 보기!!!!!!
+for x in hslist:
+  print(x)
+```
