@@ -181,7 +181,8 @@ for i in range(n):
       count += 1
       
 print(count)
-hslist.sort() # 문제 조건 잘 보기!!!!!!
+hslist.sort() 
 for x in hslist:
   print(x)
 ```
+
