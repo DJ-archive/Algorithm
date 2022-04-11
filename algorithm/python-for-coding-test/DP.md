@@ -61,7 +61,7 @@ print(d[n])
 * 일반적으로는, **기본 유형** 의 DP 문제가 출제되는 경우가 많다.
   * 점화식 떠올리기가 중요 (반복 연습 필요)
 
-## 문제1. 개미 전사
+## 문제. 개미 전사
 ```python
 n = int(input())
 wh = list(map(int,input().split()))
@@ -78,6 +78,34 @@ for i in range(2,n):
 print(dp[n-1]) # 주의
 ```
 
-## 문제2. 1로 만들기
-* 그리디 1로 만들기 문제와 비교해서 차이 이해
-    * 나누는 수가 여러 갈래이므로 그리디와 다름
+## 문제. 효율적인 화폐 구성
+
+* d[i]= 금액 i를 만들 수 있는 최소한의 화폐 갯수
+* k = 각 화폐의 단위 
+* 점화식 d[i]
+  * k를 하나씩 돌면서, d[i-k]가 존재하는 경우, d[i]=min(d[i],d[i-k]+1)
+  * d[i-k]가 존재하지 않는 경우, d[i]=INF
+* O(N*M) 복잡도 (이중 for문); 값 갱신
+
+```python
+n,m = map(int,input().split())
+arr = [] # 화폐 단위
+for i in range(n):
+  arr.append(int(input()))
+# 최솟값 문제에서, 불가능하다는 의미로 10001(최대 화폐값보다 큰 값;INF 대체) 사용
+d=[10001]*(m+1) 
+
+d[0]=0
+for i in range(n):
+  for j in range(arr[i],m+1):
+    if d[j-arr[i]]!=10001: # (i-k)원을 만드는 방법이 존재할 경우
+      d[j]=min(d[j],d[j-arr[i]]+1)
+
+if d[m]==10001:
+  print(-1)
+else:
+  print(d[m])
+```
+    
+    
+      
