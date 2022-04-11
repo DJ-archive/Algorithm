@@ -91,6 +91,7 @@ class Main {
 * 재귀 함수의 종료 조건을 반드시 명시해야 한다.
     * 종료 조건을 제대로 명시하지 않으면 함수가 무한히 호출되어, 최대 재귀 깊이 초과 메시지가 출력될 수 있다. (오류메시지와 함께 종료)
 * 종료 조건을 포함한 재귀 함수 예제
+* BOJ 하노이탑, 바킹독 참고
 
 ```python
 def recursive_function(i):
@@ -137,28 +138,7 @@ print(GCD(n,m))
 * 컴퓨터가 함수를 연속적으로 호출하면 컴퓨터 메모리 내부의 스택 프레임에 쌓임
     * 따라서 스택을 사용해야할 때, 구현상 **스택 라이브러리 대신에 재귀 함수를 이용**하는 경우가 많음
 
-### [BOJ 하노이탑](https://www.youtube.com/watch?v=8vDDJm5EewM)
-```python
-# a=start: 시작번호 b=end:목적지번호 n:원판의 개수
-  
-# 1.base condition: n==1이면 a에서 b로 간다
-# 2. 재귀함수 조건(귀납적 사고): n번째 판이 b로 가기 위해서는,
-  # n-1개가 a에서 (6-a-b)로 간다
-  # n번째 원판을 a에서 b로 간다
-  # n-1개 원판을 (6-a-b)에서 b로 간다
 
-def hanoi(n,start,end): 
-  if n==1:
-    print(start,end)
-    return
-  hanoi(n-1,start,6-start-end)
-  print(start,end)
-  hanoi(n-1,6-start-end,end)
-
-n=int(input())
-print(2**n-1)
-hanoi(n,1,3)
-```
 # 백트래킹(Backtracking)
 * 백트래킹은 해결책에 대한 후보를 구축해 나아가다 가능성이 없다고 판단되는 즉시 후보를 포기(Backtrack)해 정답을 찾아가는 범용적인 알고리즘
 * DFS는 백트래킹의 골격을 이루는 알고리즘
